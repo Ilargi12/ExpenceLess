@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ import pl.edu.agh.model.Transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,20 +43,23 @@ public class TransactionDialogController extends ModificationController {
     public ChoiceBox<Subcategory> subcategoryChoiceBox;
     @FXML
     public void initialize() {
+        dateTextField.setPromptText("rrrr-mm-dd");
+        priceTextField.setPromptText("Dodatnia liczba");
         categoryChoiceBox.setOnAction(event -> subcategoryChoiceBox.
                 setItems(FXCollections.observableArrayList(categoryChoiceBox.getValue().getSubcategories())));
     }
 
     @FXML
     public void okButtonClicked(ActionEvent event) {
+        String name = nameTextField.getText();
+        String priceString = priceTextField.getText();
+        Optional<LocalDate> date = parseDateFromString(dateTextField.getText());
+        String description = descriptionTextField.getText();
+        Subcategory subcategory = subcategoryChoiceBox.getSelectionModel().getSelectedItem();
         try {
-            String name = nameTextField.getText();
-            BigDecimal price = new BigDecimal(priceTextField.getText());
-            Optional<LocalDate> date = parseDateFromString(dateTextField.getText());
-            String description = descriptionTextField.getText();
-            Subcategory subcategory = subcategoryChoiceBox.getSelectionModel().getSelectedItem();
-
-            if(!name.isEmpty() && date.isPresent() && subcategory != null && price.compareTo(BigDecimal.ZERO) > 0){
+            BigDecimal price = new BigDecimal(priceString);
+            if(!name.isEmpty() && date.isPresent() && subcategory != null &&
+                    price.compareTo(BigDecimal.ZERO) > 0){
                 if(transactionToEdit != null){
                     accountService.removeTransaction(account, transactionToEdit);
                     transactionService.deleteTransaction(transactionToEdit);
@@ -71,10 +76,24 @@ public class TransactionDialogController extends ModificationController {
                 accountService.addTransaction(account, transaction);
                 transactionService.saveTransaction(transaction);
                 closeDialog(event);
-            }
-        } catch (Exception e){
-            System.out.println("Wrong format");
+            } else
+                showMissingTransactionInfo(name, price, date, subcategory, true);
+        } catch (NumberFormatException e){
+            showMissingTransactionInfo(name, BigDecimal.ZERO, date, subcategory, false);
         }
+    }
+
+    private void showMissingTransactionInfo(String name, BigDecimal price, Optional<LocalDate> date, Subcategory subcategory, boolean isPriceValid) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        StringBuilder stringBuilder = new StringBuilder();
+        alert.setTitle("");
+        alert.setHeaderText("Niepoprawne informacje transakcji");
+        if(name.isEmpty()) stringBuilder.append("Podano złą nazwę\n");
+        if(date.isEmpty()) stringBuilder.append("Podano złą datę\n");
+        if(subcategory == null) stringBuilder.append("Transakcja musi mieć wybraną kategorię i podkategorię\n");
+        if(price.compareTo(BigDecimal.ZERO) < 0 || !isPriceValid) stringBuilder.append("Kwota transakcji musi być dodatnią liczbą\n");
+        alert.setContentText(stringBuilder.toString());
+        alert.showAndWait();
     }
 
     @FXML
@@ -101,7 +120,11 @@ public class TransactionDialogController extends ModificationController {
     }
 
     private Optional<LocalDate> parseDateFromString(String text) {
-        LocalDate date = LocalDate.parse(text);
-        return Optional.of(date);
+        try{
+            LocalDate date = LocalDate.parse(text);
+            return Optional.of(date);
+        }catch (DateTimeParseException e){
+            return Optional.empty();
+        }
     }
 }
