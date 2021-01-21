@@ -9,6 +9,7 @@
         <property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
         <property name="connection.username"/>
         <property name="connection.password"/>
+        <property name="connection.pool_size">10</property>
 
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">create</property>
@@ -19,6 +20,8 @@
         <mapping class="pl.edu.agh.model.Category"/>
         <mapping class="pl.edu.agh.model.Subcategory"/>
         <mapping class="pl.edu.agh.model.Transaction"/>
+        <mapping class="pl.edu.agh.model.SubcategoryBudget"/>
+        <mapping class="pl.edu.agh.model.Budget"/>
 
     </session-factory>
 </hibernate-configuration>

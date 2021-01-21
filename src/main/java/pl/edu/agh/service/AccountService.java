@@ -1,7 +1,7 @@
 package pl.edu.agh.service;
 
 import com.google.inject.Inject;
-import pl.edu.agh.dao.IAccountDao;
+import pl.edu.agh.dao.AccountDao;
 import pl.edu.agh.model.Account;
 import pl.edu.agh.model.Transaction;
 import pl.edu.agh.util.SessionUtil;
@@ -10,16 +10,16 @@ import java.util.List;
 
 public class AccountService {
 
-    private final IAccountDao accountDao;
+    private final AccountDao accountDao;
 
     @Inject
-    public AccountService(IAccountDao accountDao) {
+    public AccountService(AccountDao accountDao) {
         this.accountDao = accountDao;
     }
 
     public void createAccount(Account account){
         SessionUtil.openSession();
-        accountDao.saveAccount(account);
+        accountDao.save(account);
         SessionUtil.closeSession();
     }
 
@@ -27,6 +27,7 @@ public class AccountService {
         SessionUtil.openSession();
         var list = accountDao.getAllAccounts();
         SessionUtil.closeSession();
+
         return list;
     }
 
@@ -34,6 +35,11 @@ public class AccountService {
         SessionUtil.openSession();
         accountDao.addTransaction(account, transaction);
         SessionUtil.closeSession();
+    }
 
+    public void removeTransaction(Account account, Transaction transaction){
+        SessionUtil.openSession();
+        accountDao.removeTransaction(account, transaction);
+        SessionUtil.closeSession();
     }
 }

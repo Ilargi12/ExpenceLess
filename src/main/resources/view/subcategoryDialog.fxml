@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,73 +12,60 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane stylesheets="style/style.css" prefHeight="187.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.controller.account.AccountDialogController">
+<BorderPane prefHeight="187.0" prefWidth="364.0" stylesheets="style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.controller.category.SubcategoryDialogController">
    <center>
-      <GridPane prefHeight="119.0" prefWidth="364.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" prefHeight="119.0" prefWidth="364.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="199.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="201.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="nameTextField" GridPane.columnIndex="1">
+            <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="balanceTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
-            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa:">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets right="20.0" />
-                     </VBox.margin>
-                  </Text>
-               </children>
-            </VBox>
             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Saldo początkowe:">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa: ">
                      <font>
                         <Font size="17.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets right="20.0" />
-                     </VBox.margin>
                   </Text>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                <children>
-                  <Button styleClass="standard-button" mnemonicParsing="false" onAction="#handleCancelAction" text="Anuluj" />
+                  <Button mnemonicParsing="false" onAction="#handleCancelAction" styleClass="standard-button" text="Anuluj" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button styleClass="standard-button" mnemonicParsing="false" onAction="#handleAddAction" text="Akceptuj" />
+                  <Button mnemonicParsing="false" onAction="#handleAddAction" styleClass="standard-button" text="Akceptuj" />
                </children>
             </VBox>
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kategoria: ">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" fx:id="categoryChoiceBox"/>
          </children>
       </GridPane>
    </center>
    <top>
       <VBox alignment="CENTER" prefHeight="46.0" prefWidth="364.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj konto">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj podkategorie">
                <font>
                   <Font size="24.0" />
                </font>

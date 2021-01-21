@@ -1,4 +1,4 @@
-package pl.edu.agh.controller;
+package pl.edu.agh.controller.account;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import lombok.Setter;
 import pl.edu.agh.model.Account;
 import pl.edu.agh.service.AccountService;
-import pl.edu.agh.viewelements.AccountViewElement;
 
 import java.math.BigDecimal;
 
@@ -17,14 +16,13 @@ public class AccountDialogController {
     @Setter
     private AccountService accountService;
 
-    @FXML
-    public TextField nameTextField;
-
-    @FXML
-    public TextField balanceTextField;
-
     @Setter
     private AccountController accountController;
+
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField balanceTextField;
 
     @FXML
     public void handleCancelAction(ActionEvent event) {
@@ -33,11 +31,9 @@ public class AccountDialogController {
 
     @FXML
     public void handleAddAction(ActionEvent event) {
-        Account account = new Account();
+        Account account;
         try {
-
-            account.setName(nameTextField.getText());
-            account.setBalance(new BigDecimal(balanceTextField.getText()));
+            account = new Account(nameTextField.getText(), new BigDecimal(balanceTextField.getText()));
         } catch (NumberFormatException e){
             System.out.println("Wrong format!");
             return;
@@ -45,7 +41,6 @@ public class AccountDialogController {
         if (accountController.addAccountToPane(account) != null){
             accountService.createAccount(account);
         }
-
         closeDialog(event);
     }
 

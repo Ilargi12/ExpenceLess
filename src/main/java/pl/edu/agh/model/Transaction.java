@@ -5,16 +5,17 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.swing.plaf.basic.BasicIconFactory;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity(name = "Transactions")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,44 +30,25 @@ public class Transaction {
     private String description;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Subcategory subCategory;
-
-    public Transaction(String name, BigDecimal price, Date date, Account account) {
-        this.name = name;
-        this.price = price;
-        this.date = date;
-        this.account = account;
-    }
-
-    public Transaction(String name, BigDecimal price, Date date, Account account, Subcategory subcategory) {
-        this.name = name;
-        this.price = price;
-        this.date = date;
-        this.account = account;
-        this.subCategory = subcategory;
-    }
-
-    public Transaction(String name, BigDecimal price, Date date, String description, Account account, Subcategory subcategory) {
-        this.name = name;
-        this.price = price;
-        this.date = date;
-        this.description = description;
-        this.account = account;
-        this.subCategory = subcategory;
-    }
-
-    public Transaction(String name, BigDecimal price, Date date, String description, Account account) {
-        this.name = name;
-        this.price = price;
-        this.date = date;
-        this.description = description;
-        this.account = account;
-    }
 }
+
+
+
+
+
+
+
+
+

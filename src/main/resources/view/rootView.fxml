@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.controller.RootViewController">
+    <center>
+    </center>
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: #275DAD;" styleClass="top">
+            <children>
+                <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../logo.jpeg" />
+                    </image>
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </HBox.margin>
+                </ImageView>
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ExpensLESS">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="5.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fill="WHITE" onMouseClicked="#accountsButtonClicked" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand" text="Konta">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="45.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fill="WHITE" onMouseClicked="#budgetsButtonClicked" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand" text="Budżety">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="45.0" />
+                    </HBox.margin>
+                </Text>
+            <Text fill="WHITE" onMouseClicked="#reportButtonClicked" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Raport">
+               <HBox.margin>
+                  <Insets left="45.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+                <Text fx:id="backButton" fill="WHITE" onMouseClicked="#backButtonClicked" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand" text="Wstecz">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="45.0" />
+                    </HBox.margin>
+                </Text>
+            </children>
+        </HBox>
+    </top>
+
+</BorderPane>

@@ -18,16 +18,80 @@
 
 }
 
-.account-view-add-button {
-    -fx-background-color: #ECA72C;
+.add-button {
+    -fx-background-color: #2ac12b;
     -fx-background-radius: 10em;
-    -fx-min-width: 40px;
     -fx-min-height: 40px;
-    -fx-max-width: 80px;
+    -fx-min-width: 150px;
     -fx-max-height: 80px;
-    -fx-font-size: 40px;
-    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
     -fx-cursor: hand;
     -fx-alignment: center;
     -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 1 );
 }
+.edit-button {
+    -fx-background-color: #ECA72C;
+    -fx-background-radius: 10em;
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+    -fx-max-height: 80px;
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 1);
+}
+.delete-button {
+    -fx-background-color: #ff0000;
+    -fx-background-radius: 10em;
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+    -fx-max-height: 80px;
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 1);
+}
+.subcategory-budget-edit-button {
+    -fx-background-color: #ECA72C;
+    -fx-background-radius: 10em;
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+    -fx-max-height: 80px;
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 1);
+}
+.subcategory-budget-add-button {
+    -fx-background-color: #2ac12b;
+    -fx-background-radius: 10em;
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+    -fx-max-height: 80px;
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 1);
+}
+.subcategory-budget-delete-button {
+    -fx-background-color: #ff0000;
+    -fx-background-radius: 10em;
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+    -fx-max-height: 80px;
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 1);
+}
+
+
+
+.default-color0.chart-bar { -fx-bar-fill: red }
+.default-color1.chart-bar { -fx-bar-fill: green }
